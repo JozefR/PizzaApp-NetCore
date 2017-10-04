@@ -1,0 +1,66 @@
+﻿@model IEnumerable<PizzaAppCore.Models.ExtraIngredientsModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Chcees)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Pepperoni)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Onions)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Bacon)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Sausage)
+                </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PizzaModel)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Chcees)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pepperoni)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Onions)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bacon)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sausage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PizzaModel.ID)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,49 @@
+﻿@model PizzaAppCore.Models.PizzaModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PizzaModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PizaNameEnum)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PizaNameEnum)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CrustEnum)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CrustEnum)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SizeEnum)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SizeEnum)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ExtraIngredientsModelID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ExtraIngredientsModelID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OrderId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
