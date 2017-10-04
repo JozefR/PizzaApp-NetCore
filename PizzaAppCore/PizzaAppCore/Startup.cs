@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PizzaAppCore.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace PizzaAppCore
 {
@@ -22,6 +20,7 @@ namespace PizzaAppCore
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddDbContext<PizzaAppContext>(options => options.UseSqlServer(Configuration.GetConnectionString("PizzaAppDb")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

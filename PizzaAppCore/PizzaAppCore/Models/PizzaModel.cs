@@ -10,9 +10,9 @@ namespace PizzaAppCore.Models
         public SizeEnum SizeEnum { get; set; }
 
         public byte ExtraIngredientsModelID { get; set; }
-        public ExtraIngredientsModel ExtraIngredients { get; set; }
+        public ExtraIngredientsModel ExtraIngredientsModel { get; set; }
 
         public byte OrderId { get; set; }
-        public OrderModel Order { get; set; }
+        public OrderModel OrderModel { get; set; }
     }
 }
