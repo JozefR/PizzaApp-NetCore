@@ -2,10 +2,10 @@
 {
     public enum PizzaNameEnum
     {
-        margarita = 1,
-        alCapone = 2,
-        hawai = 3,
-        salami = 4
+        Margarita = 1,
+        Al_Capone = 2,
+        Hawai = 3,
+        Salami = 4
 
     }
 }

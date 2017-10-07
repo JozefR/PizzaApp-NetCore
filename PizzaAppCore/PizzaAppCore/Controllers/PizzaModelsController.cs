@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PizzaAppCore.Models;
+using PizzaAppCore.ViewModels;
 
 namespace PizzaAppCore.Controllers
 {
@@ -33,6 +31,7 @@ namespace PizzaAppCore.Controllers
             }
 
             var pizzaModel = await _context.Pizza
+                .Include(e => e.PizaNameEnum)
                 .SingleOrDefaultAsync(m => m.ID == id);
             if (pizzaModel == null)
             {
@@ -43,9 +42,14 @@ namespace PizzaAppCore.Controllers
         }
 
         // GET: PizzaModels/Create
-        public IActionResult Create()
+        public IActionResult New()
         {
-            return View();
+            var pizza = new PizzaViewModel
+            {
+                PizzaModel = new PizzaModel(),
+            };
+
+            return View("PizzaForm", pizza);
         }
 
         // POST: PizzaModels/Create
@@ -53,7 +57,7 @@ namespace PizzaAppCore.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,PizaNameEnum,CrustEnum,SizeEnum,ExtraIngredientsModelID,OrderId")] PizzaModel pizzaModel)
+        public async Task<IActionResult> Create([Bind("IPizaNameEnum,CrustEnum,SizeEnum,ExtraIngredientsModelID,OrderId")] PizzaModel pizzaModel)
         {
             if (ModelState.IsValid)
             {

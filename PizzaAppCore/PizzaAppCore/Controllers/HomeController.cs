@@ -1,18 +1,67 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using PizzaAppCore.Models;
+using PizzaAppCore.ViewModels;
+using System.Linq;
 
 namespace PizzaAppCore.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        private PizzaAppContext _context;
+
+        public HomeController(PizzaAppContext context)
         {
-            return View();
+            _context = context;
+        }
+
+        public ActionResult Index()
+        {
+            var customer = new ViewModels.OrderFormViewModel
+            {
+                CustomerModel = new CustomerModel()
+            };
+
+            return View("Index", customer);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Save(CustomerModel customerModel, PizzaModel pizzaModel, ExtraIngredientsModel extraIngredients)
+        {
+            if (!ModelState.IsValid)
+            {
+                var customerViewModel = new OrderFormViewModel
+                {
+                    CustomerModel = customerModel,
+                    PizzaModel = pizzaModel,
+                    ExtraIngredients = extraIngredients
+                };
+                return View("Index", customerViewModel);
+            }
+
+            if (customerModel.ID == 0)
+            {
+                _context.Customer.Add(customerModel);
+                _context.Pizza.Add(pizzaModel);
+                _context.ExtraIngredients.Add(extraIngredients);
+            }
+                
+            else
+            {
+                var customerInDb = _context.Customer.Single(c => c.ID == customerModel.ID);
+
+                customerInDb.Name = customerModel.Name;
+                customerInDb.Address = customerModel.Address;
+                customerInDb.Phone = customerModel.Phone;
+
+                _context.Pizza.Add(pizzaModel);
+                _context.ExtraIngredients.Add(extraIngredients);
+            }
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "CustomerModels");
+
         }
 
         public IActionResult About()

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using PizzaAppCore.ViewModels;
 
 namespace PizzaAppCore.Models
 {
@@ -13,5 +14,12 @@ namespace PizzaAppCore.Models
             :base(options)
         { }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<CustomerModel>().ToTable("Customer");
+            modelBuilder.Entity<PizzaModel>().ToTable("Pizza");
+            modelBuilder.Entity<ExtraIngredientsModel>().ToTable("ExtraIngredients");
+            modelBuilder.Entity<OrderModel>().ToTable("Order");
+        }
     }
 }
