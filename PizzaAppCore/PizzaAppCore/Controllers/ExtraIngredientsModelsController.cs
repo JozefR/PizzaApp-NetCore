@@ -21,7 +21,7 @@ namespace PizzaAppCore.Controllers
         // GET: ExtraIngredientsModels
         public async Task<IActionResult> Index()
         {
-            var pizzaAppContext = _context.ExtraIngredients.Include(e => e.PizzaModel);
+            var pizzaAppContext = _context.ExtraIngredients;
             return View(await pizzaAppContext.ToListAsync());
         }
 
@@ -34,7 +34,6 @@ namespace PizzaAppCore.Controllers
             }
 
             var extraIngredientsModel = await _context.ExtraIngredients
-                .Include(e => e.PizzaModel)
                 .SingleOrDefaultAsync(m => m.ID == id);
             if (extraIngredientsModel == null)
             {
@@ -64,7 +63,7 @@ namespace PizzaAppCore.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PizzaModelID"] = new SelectList(_context.Pizza, "ID", "ID", extraIngredientsModel.PizzaModelID);
+            ViewData["PizzaModelID"] = new SelectList(_context.Pizza, "ID", "ID");
             return View(extraIngredientsModel);
         }
 
@@ -81,7 +80,7 @@ namespace PizzaAppCore.Controllers
             {
                 return NotFound();
             }
-            ViewData["PizzaModelID"] = new SelectList(_context.Pizza, "ID", "ID", extraIngredientsModel.PizzaModelID);
+            ViewData["PizzaModelID"] = new SelectList(_context.Pizza, "ID", "ID");
             return View(extraIngredientsModel);
         }
 
@@ -117,7 +116,7 @@ namespace PizzaAppCore.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PizzaModelID"] = new SelectList(_context.Pizza, "ID", "ID", extraIngredientsModel.PizzaModelID);
+            ViewData["PizzaModelID"] = new SelectList(_context.Pizza, "ID", "ID");
             return View(extraIngredientsModel);
         }
 
@@ -129,15 +128,14 @@ namespace PizzaAppCore.Controllers
                 return NotFound();
             }
 
-            var extraIngredientsModel = await _context.ExtraIngredients
-                .Include(e => e.PizzaModel)
+            var extraIngredientsModell = await _context.ExtraIngredients
                 .SingleOrDefaultAsync(m => m.ID == id);
-            if (extraIngredientsModel == null)
+            if (extraIngredientsModell == null)
             {
                 return NotFound();
             }
 
-            return View(extraIngredientsModel);
+                return View(extraIngredientsModell);
         }
 
         // POST: ExtraIngredientsModels/Delete/5

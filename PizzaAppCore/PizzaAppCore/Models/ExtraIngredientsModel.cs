@@ -10,8 +10,5 @@ namespace PizzaAppCore.Models
         public bool Onions { get; set; }
         public bool Bacon { get; set; }
         public bool Sausage { get; set; }
-
-        public int PizzaModelID { get; set; }
-        public PizzaModel PizzaModel { get; set; }
     }
 }
