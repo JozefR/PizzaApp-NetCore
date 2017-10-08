@@ -27,7 +27,7 @@ namespace PizzaAppCore.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Save(CustomerModel customerModel, PizzaModel pizzaModel, ExtraIngredientsModel extraIngredients)
+        public IActionResult Save(CustomerModel customerModel, PizzaModel pizzaModel, ExtraIngredientsModel extraIngredients, OrderModel orderModel)
         {
             if (!ModelState.IsValid)
             {
@@ -35,7 +35,8 @@ namespace PizzaAppCore.Controllers
                 {
                     CustomerModel = customerModel,
                     PizzaModel = pizzaModel,
-                    ExtraIngredients = extraIngredients
+                    ExtraIngredients = extraIngredients,
+                    OrderModel = orderModel
                 };
                 return View("Index", customerViewModel);
             }
@@ -45,6 +46,7 @@ namespace PizzaAppCore.Controllers
                 _context.Customer.Add(customerModel);
                 _context.Pizza.Add(pizzaModel);
                 _context.ExtraIngredients.Add(extraIngredients);
+                _context.Order.Add(orderModel);
             }
                 
             else
@@ -57,6 +59,7 @@ namespace PizzaAppCore.Controllers
 
                 _context.Pizza.Add(pizzaModel);
                 _context.ExtraIngredients.Add(extraIngredients);
+                _context.Order.Add(orderModel);
             }
             _context.SaveChanges();
 

@@ -16,6 +16,7 @@ namespace PizzaAppCore.Models
 
         public int CustomerModelID { get; set; }
         public CustomerModel CustomerModel { get; set; }
+
         public ICollection<PizzaModel> PizzasModel { get; set; }
     }
 }
