@@ -10,11 +10,13 @@ namespace PizzaAppCore.ViewModels
     {
         public CustomerModel CustomerModel { get; set; }
         public ExtraIngredientsModel ExtraIngredients { get; set; }
-
         public PizzaModel PizzaModel { get; set; }
+        public OrderModel OrderModel { get; set; }
+
         public List<SelectListItem> PizzaNamesEnum { get; set; }
         public List<SelectListItem> PizzaCrustEnum { get; set; }
         public List<SelectListItem> PizzaSizeEnum { get; set; }
+        public List<SelectListItem> PaymentEnumm { get; set; }
 
         public OrderFormViewModel()
         {
@@ -22,6 +24,7 @@ namespace PizzaAppCore.ViewModels
             PizzaNamesEnum = new List<SelectListItem>();
             PizzaCrustEnum = new List<SelectListItem>();
             PizzaSizeEnum = new List<SelectListItem>();
+            PaymentEnumm = new List<SelectListItem>();
 
             PizzaNamesEnum.Add(new SelectListItem
             {
@@ -75,6 +78,18 @@ namespace PizzaAppCore.ViewModels
             {
                 Value = ((int)SizeEnum.large).ToString(),
                 Text = SizeEnum.large.ToString()
+            });
+
+            PaymentEnumm.Add(new SelectListItem
+            {
+                Value = ((int)PaymentEnum.Cash).ToString(),
+                Text = PaymentEnum.Cash.ToString()
+            });
+
+            PaymentEnumm.Add(new SelectListItem
+            {
+                Value = ((int)PaymentEnum.Credit).ToString(),
+                Text = PaymentEnum.Credit.ToString()
             });
         }
     }
