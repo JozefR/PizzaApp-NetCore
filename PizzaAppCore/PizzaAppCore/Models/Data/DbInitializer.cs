@@ -9,6 +9,7 @@ namespace PizzaAppCore.Models.Data
     {
         public static void Initialize(PizzaAppContext context)
         {
+            
             context.Database.EnsureCreated();
 
             var customers = new CustomerModel[]
@@ -26,7 +27,8 @@ namespace PizzaAppCore.Models.Data
             
             var order = new OrderModel[]
             {
-                new OrderModel{CustomerModelID = 10015,Note="sth",OrderDate=DateTime.Now,OrderStatusEnum= Enums.OrderStatusEnum.Finished,PaymentEnum = Enums.PaymentEnum.Cash,TotalCost=12}
+                new OrderModel{CustomerModelID = 10029,Note="sth else",OrderDate=DateTime.Now,OrderStatusEnum= Enums.OrderStatusEnum.Todo,PaymentEnum = Enums.PaymentEnum.Credit,TotalCost=14},
+                new OrderModel{CustomerModelID = 10029,Note="sth",OrderDate=DateTime.Now,OrderStatusEnum= Enums.OrderStatusEnum.Finished,PaymentEnum = Enums.PaymentEnum.Cash,TotalCost=12}
             };
 
             foreach (var or in order)
@@ -48,10 +50,11 @@ namespace PizzaAppCore.Models.Data
             }
 
             context.SaveChanges();
-
+            
             var pizza = new PizzaModel[]
             {
-                new PizzaModel{OrderId=1, ExtraIngredientsModelID=1}
+                new PizzaModel{OrderModelID=24, ExtraIngredientsModelID=3019,CrustEnum = Enums.CrustEnum.thick, PizaNameEnum = Enums.PizzaNameEnum.Al_Capone, SizeEnum = Enums.SizeEnum.small},
+                new PizzaModel{OrderModelID=24, ExtraIngredientsModelID=3019,CrustEnum = Enums.CrustEnum.thick, PizaNameEnum = Enums.PizzaNameEnum.Al_Capone, SizeEnum = Enums.SizeEnum.small}
             };
 
             foreach (var p in pizza)
@@ -60,6 +63,7 @@ namespace PizzaAppCore.Models.Data
             }
 
             context.SaveChanges();
+           
         }   
     }
 }

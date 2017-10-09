@@ -12,9 +12,10 @@ using System;
 namespace PizzaAppCore.Migrations
 {
     [DbContext(typeof(PizzaAppContext))]
-    partial class PizzaAppContextModelSnapshot : ModelSnapshot
+    [Migration("20171009165313_UpdatePizzaTableProperties")]
+    partial class UpdatePizzaTableProperties
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -23,7 +24,8 @@ namespace PizzaAppCore.Migrations
 
             modelBuilder.Entity("PizzaAppCore.Models.CustomerModel", b =>
                 {
-                    b.Property<int>("ID");
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Address");
 
@@ -89,7 +91,9 @@ namespace PizzaAppCore.Migrations
 
                     b.Property<int>("ExtraIngredientsModelID");
 
-                    b.Property<int>("OrderModelID");
+                    b.Property<int>("OrderId");
+
+                    b.Property<int?>("OrderModelID");
 
                     b.Property<int>("PizaNameEnum");
 
@@ -121,8 +125,7 @@ namespace PizzaAppCore.Migrations
 
                     b.HasOne("PizzaAppCore.Models.OrderModel", "OrderModel")
                         .WithMany("PizzasModel")
-                        .HasForeignKey("OrderModelID")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("OrderModelID");
                 });
 #pragma warning restore 612, 618
         }

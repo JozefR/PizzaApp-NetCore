@@ -12,9 +12,10 @@ using System;
 namespace PizzaAppCore.Migrations
 {
     [DbContext(typeof(PizzaAppContext))]
-    partial class PizzaAppContextModelSnapshot : ModelSnapshot
+    [Migration("20171009170848_RepairNavigationPropertyInPizzaTable")]
+    partial class RepairNavigationPropertyInPizzaTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -23,7 +24,8 @@ namespace PizzaAppCore.Migrations
 
             modelBuilder.Entity("PizzaAppCore.Models.CustomerModel", b =>
                 {
-                    b.Property<int>("ID");
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Address");
 

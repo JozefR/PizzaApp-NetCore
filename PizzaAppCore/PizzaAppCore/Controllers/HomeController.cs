@@ -44,9 +44,9 @@ namespace PizzaAppCore.Controllers
             if (customerModel.ID == 0)
             {
                 _context.Customer.Add(customerModel);
+                _context.Order.Add(orderModel);
                 _context.Pizza.Add(pizzaModel);
                 _context.ExtraIngredients.Add(extraIngredients);
-                _context.Order.Add(orderModel);
             }
                 
             else
