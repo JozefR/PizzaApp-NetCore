@@ -18,5 +18,12 @@ namespace PizzaAppCore.Models
         public CustomerModel CustomerModel { get; set; }
 
         public ICollection<PizzaModel> PizzasModel { get; set; }
+
+
+
+        public void SetCustomerModelId(int customerModelId)
+        {
+            CustomerModelID = customerModelId;
+        }
     }
 }

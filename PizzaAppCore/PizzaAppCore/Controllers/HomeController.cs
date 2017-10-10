@@ -29,38 +29,30 @@ namespace PizzaAppCore.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Save(CustomerModel customerModel, PizzaModel pizzaModel, ExtraIngredientsModel extraIngredients, OrderModel orderModel)
         {
-            if (!ModelState.IsValid)
-            {
-                var customerViewModel = new OrderFormViewModel
-                {
-                    CustomerModel = customerModel,
-                    PizzaModel = pizzaModel,
-                    ExtraIngredients = extraIngredients,
-                    OrderModel = orderModel
-                };
-                return View("Index", customerViewModel);
-            }
 
             if (customerModel.ID == 0)
             {
                 _context.Customer.Add(customerModel);
-                _context.Order.Add(orderModel);
-                _context.Pizza.Add(pizzaModel);
+                
                 _context.ExtraIngredients.Add(extraIngredients);
+
+                var customerID = customerModel.ID;
+
+                orderModel.CustomerModelID = customerID;
+
+                _context.Order.Add(orderModel);
+
+                pizzaModel.OrderModelID = orderModel.ID;
+                pizzaModel.ExtraIngredientsModelID = extraIngredients.ID;
+                
+                _context.Pizza.Add(pizzaModel);
             }
                 
             else
             {
-                var customerInDb = _context.Customer.Single(c => c.ID == customerModel.ID);
-
-                customerInDb.Name = customerModel.Name;
-                customerInDb.Address = customerModel.Address;
-                customerInDb.Phone = customerModel.Phone;
-
-                _context.Pizza.Add(pizzaModel);
-                _context.ExtraIngredients.Add(extraIngredients);
-                _context.Order.Add(orderModel);
+                throw new System.Exception("Not implemented");
             }
+
             _context.SaveChanges();
 
             return RedirectToAction("Index", "CustomerModels");

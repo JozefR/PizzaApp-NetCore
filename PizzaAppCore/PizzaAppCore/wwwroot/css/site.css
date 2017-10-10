@@ -1,10 +1,8 @@
 ﻿body {
-    background: url(https://source.unsplash.com/KK1hlAI2lgE);
-    background-size: cover;
-    background-position: center;
-    color: white;
+
     font-family: 'Lobster', cursive;
 }
+
 
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */

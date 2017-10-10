@@ -9,7 +9,7 @@ namespace PizzaAppCore.Models.Data
     {
         public static void Initialize(PizzaAppContext context)
         {
-            
+            /*
             context.Database.EnsureCreated();
 
             var customers = new CustomerModel[]
@@ -63,7 +63,7 @@ namespace PizzaAppCore.Models.Data
             }
 
             context.SaveChanges();
-           
+           */
         }   
     }
 }

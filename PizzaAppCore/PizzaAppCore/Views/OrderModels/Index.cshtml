@@ -19,6 +19,9 @@
                 <th>
                     @Html.DisplayNameFor(model => model.OrderStatusEnum)
                 </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentEnum)
+            </th>
                 <th>
                     @Html.DisplayNameFor(model => model.TotalCost)
                 </th>
@@ -39,6 +42,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.OrderStatusEnum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentEnum)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.TotalCost)
